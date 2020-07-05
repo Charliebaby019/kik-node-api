@@ -93,6 +93,9 @@ module.exports = (client, callbacks, id, data) => {
                 if(receipt === "delivered"){
                     callback(true, false);
                 }else if(receipt === "read"){
+        let userSearch = client.users.find((user) => {return user.jid === data.find("message").attrs.from;});
+            user = (userSearch? userSearch : user);
+                       console.log(user.jid);
                     callback(false, true);
                     callbacks.delete(msgid.attrs.id);
                 }
